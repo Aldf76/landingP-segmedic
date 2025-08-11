@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./index.css";
+
+// Seções
+import Hero from "./components/sections/Hero";
+import Benefits from "./components/sections/Benefits";
+import HowItWorks from "./components/sections/HowItWorks";
+import Testimonials from "./components/sections/Testimonials";
+import FAQ from "./components/sections/FAQ";
+import CTA from "./components/sections/CTA";
+
+// Formulário
+import LeadForm from "./features/lead/LeadForm";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main className="min-h-dvh bg-background text-foreground">
+      {/* Hero */}
+      <section id="hero">
+        <Hero />
+      </section>
+
+      {/* Benefícios */}
+      <section id="benefits">
+        <Benefits />
+      </section>
+
+      {/* Como funciona */}
+      <section id="how-it-works">
+        <HowItWorks />
+      </section>
+
+      {/* Depoimentos */}
+      <section id="testimonials">
+        <Testimonials />
+      </section>
+
+      {/* FAQ */}
+      <section id="faq">
+        <FAQ />
+      </section>
+
+      {/* CTA final + Formulário */}
+      <section id="lead" className="py-16">
+        <div className="container mx-auto px-4 grid gap-10 md:grid-cols-2">
+          <CTA />
+          <div>
+            <LeadForm />
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }
 
-export default App
+export default App;
