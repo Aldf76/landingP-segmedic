@@ -1,4 +1,6 @@
 import "./index.css";
+//Layout
+import MainLayout from "./components/layout/MainLayout";
 
 // Seções
 import Hero from "./components/sections/Hero";
@@ -13,7 +15,9 @@ import LeadForm from "./features/lead/LeadForm";
 
 function App() {
   return (
-    <main className="min-h-dvh bg-background text-foreground">
+
+    
+    <MainLayout>
       {/* Hero */}
       <section id="hero">
         <Hero />
@@ -48,7 +52,8 @@ function App() {
           </div>
         </div>
       </section>
-    </main>
+      </MainLayout>
+
   );
 }
 
