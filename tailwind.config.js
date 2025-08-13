@@ -30,7 +30,11 @@ export default {
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
-  			},
+			},
+			light: {
+			  DEFAULT: 'hsl(184, 50%, 96%)', // azul clarinho
+			  foreground: 'hsl(184, 30%, 30%)'
+			},
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'
