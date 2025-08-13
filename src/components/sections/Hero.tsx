@@ -1,45 +1,61 @@
-// src/components/sections/Hero.tsx
-import Button from "../ui/button"; // Componente de botão reutilizável
-import heroImg from "@/assets/hero.webp"; // Imagem principal do Hero
+import { CheckCircle2 } from "lucide-react";
+import Button from "../ui/button";
+import { Badge } from "../ui/badge";
+import heroBg from "@/assets/hero-2.webp";
 
 export default function Hero() {
   return (
-    // SECTION → bloco principal do Hero
-    <section className="container mx-auto px-4 py-16 md:py-24">
-      
-      {/* GRID → divide o conteúdo em duas colunas no desktop (texto à esquerda, imagem à direita) */}
-      <div className="grid items-center gap-10 md:grid-cols-2">
-        
-        {/* BLOCO DE TEXTO */}
-        <div>
-          {/* TÍTULO PRINCIPAL → maior destaque visual da página */}
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Programa de Descontos em Saúde <span className="text-primary">SegMedic</span>
-          </h1>
+    <section id="hero" className="relative isolate overflow-hidden">
+      {/* BG image */}
+      <div
+        className="absolute inset-0 z-0 bg-center bg-cover"
+        style={{ backgroundImage: `url(${heroBg})` }}
+        aria-hidden
+      />
+      {/* overlay suave */}
+      <div className="absolute inset-0 z-0 bg-white/10" aria-hidden />
 
-          {/* PARÁGRAFO DESCRITIVO → explica rapidamente a proposta do serviço */}
-          <p className="mt-4 text-slate-600">
-  Programa de descontos da SegMedic para <strong>pessoas físicas</strong> e famílias que buscam
-  <strong> economia em consultas e exames</strong> na rede parceira. Simples, sem fidelidade e com acesso imediato.
-</p>
-          {/* BOTÃO DE CHAMADA PARA AÇÃO (CTA) → direciona o usuário para o formulário */}
-          <div className="mt-8">
-            {/* Link âncora para a seção do formulário (id="lead") */}
-            <a href="#lead" aria-label="Ir para formulário">
-              <Button size="lg">Quero meu desconto</Button>
-            </a>
+      <div className="relative z-10 container mx-auto px-4 py-16 md:py-24">
+        <div className="max-w-3xl">
+          <div className="rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg p-6 md:p-10">
+            <Badge className="mb-4">Para empresas</Badge>
+
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
+              Planos e benefícios de saúde sem dor de cabeça
+            </h1>
+
+            <p className="mt-4 text-slate-700 md:text-lg">
+              Reduza custos e ganhe previsibilidade. Gestão simples, suporte
+              humano e onboarding em dias — não meses.
+            </p>
+
+            <ul className="mt-6 space-y-3">
+              {[
+                "Economia relevante no primeiro ano*",
+                "Ativação rápida para novas admissões",
+                "Relatórios claros para decisões de RH",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3 text-slate-800">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8">
+              <a
+                href="#lead"
+                aria-label="Ir para o formulário de contato"
+                data-analytics="cta-hero-primary"
+              >
+                <Button size="lg">Falar com um especialista</Button>
+              </a>
+            </div>
+
+            <p className="mt-3 text-xs text-slate-500">
+              *Métrica ilustrativa — ajustamos quando houver dado real.
+            </p>
           </div>
-        </div>
-
-        {/* BLOCO DA IMAGEM */}
-        <div className="relative">
-          {/* IMG → imagem ilustrativa que transmite a proposta da página */}
-          <img
-            src={heroImg} // caminho da imagem importada
-            alt="Atendimento médico acolhedor" // descrição para acessibilidade e SEO
-            className="w-full h-auto rounded-xl shadow" // responsiva + cantos arredondados + sombra
-            loading="eager" // carrega a imagem o quanto antes (importante para a primeira dobra da página)
-          />
         </div>
       </div>
     </section>
