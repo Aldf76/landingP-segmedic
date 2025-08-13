@@ -1,4 +1,6 @@
 import "./index.css";
+//Layout
+import MainLayout from "./components/layout/MainLayout";
 
 // Seções
 import Hero from "./components/sections/Hero";
@@ -7,13 +9,14 @@ import HowItWorks from "./components/sections/HowItWorks";
 import Testimonials from "./components/sections/Testimonials";
 import FAQ from "./components/sections/FAQ";
 import CTA from "./components/sections/CTA";
+import LocationCoverageRJ from "./components/sections/Location";
 
 // Formulário
 import LeadForm from "./features/lead/LeadForm";
 
 function App() {
   return (
-    <main className="min-h-dvh bg-background text-foreground">
+    <MainLayout>
       {/* Hero */}
       <section id="hero">
         <Hero />
@@ -23,7 +26,8 @@ function App() {
       <section id="benefits">
         <Benefits />
       </section>
-
+      {/* Áreas de atuação */}
+      <LocationCoverageRJ />
       {/* Como funciona */}
       <section id="how-it-works">
         <HowItWorks />
@@ -32,11 +36,6 @@ function App() {
       {/* Depoimentos */}
       <section id="testimonials">
         <Testimonials />
-      </section>
-
-      {/* FAQ */}
-      <section id="faq">
-        <FAQ />
       </section>
 
       {/* CTA final + Formulário */}
@@ -48,7 +47,13 @@ function App() {
           </div>
         </div>
       </section>
-    </main>
+
+      {/* FAQ */}
+      <section id="faq">
+        <FAQ />
+      </section>
+
+    </MainLayout>
   );
 }
 
