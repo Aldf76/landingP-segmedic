@@ -31,7 +31,6 @@ const faqs = [
   },
 ];
 
-
 export default function FAQHybrid() {
   return (
     <section
@@ -40,6 +39,8 @@ export default function FAQHybrid() {
         bg-[--seg-secondary]/10  // TODO: mapeie para sua cor secundária
         "
     >
+      <div className="w-full h-px bg-[#D2EAD2]" aria-hidden="true" />
+
       {/* Curvinha top (opcional) */}
       <div
         className="absolute inset-x-0 -top-6 h-6 rounded-b-[2rem]
@@ -49,9 +50,11 @@ export default function FAQHybrid() {
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           <header className="mb-8 md:mb-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight
+            <h2
+              className="text-3xl md:text-4xl font-semibold tracking-tight
               text-[--seg-primary]  // TODO: cor primária
-            ">
+            "
+            >
               Dúvidas frequentes
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
@@ -130,15 +133,13 @@ export default function FAQHybrid() {
                   bg-[--seg-primary]  // TODO: faixa/halo primário
                   "
               >
-                <div className="
+                <div
+                  className="
                   rounded-3xl p-4 md:p-6
                   bg-background
-                ">
-                  <Accordion
-                    type="single"
-                    collapsible
-                    className="w-full"
-                  >
+                "
+                >
+                  <Accordion type="single" collapsible className="w-full">
                     {faqs.map((f, i) => (
                       <AccordionItem
                         key={i}
@@ -161,9 +162,11 @@ export default function FAQHybrid() {
                           "
                         >
                           <span className="flex items-start gap-3">
-                            <span className="mt-0.5 inline-flex size-6 items-center justify-center rounded-full
+                            <span
+                              className="mt-0.5 inline-flex size-6 items-center justify-center rounded-full
                               bg-[--seg-primary]/10 text-[--seg-primary] text-sm font-semibold
-                            ">
+                            "
+                            >
                               {(i + 1).toString().padStart(2, "0")}
                             </span>
                             {f.q}
@@ -182,13 +185,6 @@ export default function FAQHybrid() {
           </div>
         </div>
       </div>
-
-      {/* Curvinha bottom (opcional) */}
-      <div
-        className="absolute inset-x-0 -bottom-6 h-6 rounded-t-[2rem]
-        bg-[--seg-secondary]/10 pointer-events-none"
-        aria-hidden
-      />
     </section>
   );
 }

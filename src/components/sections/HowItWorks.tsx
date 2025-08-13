@@ -9,13 +9,12 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative isolate overflow-hidden">
-      {/* fundo em cor secundária suave */}
-      <div className="absolute inset-0 -z-10 bg-secondary/10" aria-hidden />
+    <section id="how-it-works" className="relative isolate overflow-hidden section-y section-divider">
+      {/* 🔹 Removido overlay de cor fixa. Agora a section usa o fundo global. */}
 
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Como funciona</h2>
-        <p className="mt-3 text-slate-600 max-w-xl">Um fluxo direto para você começar a economizar hoje.</p>
+      <div className="section-container">
+        <h2 className="section-title">Como funciona</h2>
+        <p className="section-subtitle">Um fluxo direto para você começar a economizar hoje.</p>
 
         {/* wrapper com divisória central (desktop) */}
         <div className="relative mt-10">
@@ -51,6 +50,7 @@ export default function HowItWorks() {
             {/* DIREITA — contato consultivo */}
             <div className="h-full md:pl-6">
               <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm flex flex-col">
+                {/* Badge interna mantém cor própria sem alterar o fundo da section */}
                 <div className="inline-flex items-center gap-2 rounded-full bg-secondary/40 px-3 py-1 text-xs font-medium text-slate-700">
                   <PhoneCall className="h-4 w-4" /> Atendimento consultivo
                 </div>
