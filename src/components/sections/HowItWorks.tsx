@@ -1,104 +1,103 @@
-import Button from "../ui/button";
-import { MessageSquare, PhoneCall } from "lucide-react";
+// components/ComoFunciona.tsx
+"use client";
 
-const steps = [
-  { n: "1", t: "Cadastre-se", d: "Leva menos de 30 segundos." },
-  { n: "2", t: "Receba o acesso", d: "Enviamos instruções no seu e-mail." },
-  { n: "3", t: "Aproveite", d: "Use os descontos em consultas e exames." },
-];
+import { Button } from "../ui/button";
 
-export default function HowItWorks() {
+export default function ComoFunciona() {
   return (
-    <section id="how-it-works" className="relative isolate overflow-hidden section-y section-divider">
-      {/* 🔹 Removido overlay de cor fixa. Agora a section usa o fundo global. */}
+    <section className="relative py-16 md:py-24 bg-white">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Header */}
+        <header className="text-center mb-10">
+          <span className="text-sm font-medium text-slate-600 bg-slate-100 border border-slate-200 rounded-full px-3 py-1 inline-block mb-4">
+            Dois jeitos de começar agora
+          </span>
+          <h2 className="text-3xl md:text-4xl font-semibold text-[#1E2547]">
+            Como funciona
+          </h2>
+          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+            Um fluxo direto para você começar a economizar hoje.
+          </p>
+        </header>
 
-      <div className="section-container">
-        <h2 className="section-title">Como funciona</h2>
-        <p className="section-subtitle">Um fluxo direto para você começar a economizar hoje.</p>
-
-        {/* wrapper com divisória central (desktop) */}
-        <div className="relative mt-10">
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-300/60" aria-hidden />
-
-          <div className="hidden md:flex absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-            <span className="px-3 py-1 rounded-full bg-white shadow text-xs font-medium text-slate-600">
-              Dois jeitos de começar agora
-            </span>
+        {/* Grid de dois caminhos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Autoatendimento */}
+          <div className="rounded-2xl shadow-sm border bg-white p-6 md:p-8 text-left">
+            <h3 className="text-lg md:text-xl font-semibold mb-2">Simular economia agora</h3>
+            <p className="text-slate-600 mb-4">
+              Informe colaboradores e modalidade atual e veja <strong>economia estimada</strong>.
+            </p>
+            <Button
+              onClick={() => {
+                const el = document.getElementById("simulador");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+              aria-label="Simular economia agora"
+            >
+              Simular economia
+            </Button>
           </div>
 
-          {/* grid alinhada e com alturas iguais */}
-          <div className="grid gap-8 md:grid-cols-2 items-stretch">
-            {/* ESQUERDA — passos */}
-            <div className="h-full">
-              <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm flex flex-col">
-                <div className="space-y-8">
-                  {steps.map((s) => (
-                    <div key={s.n} className="group">
-                      <div className="size-10 rounded-full bg-primary text-primary-foreground grid place-items-center font-semibold shadow-sm">
-                        {s.n}
-                      </div>
-                      <h3 className="mt-4 text-lg font-semibold">{s.t}</h3>
-                      <p className="mt-2 text-slate-600">{s.d}</p>
-                      <div className="mt-4 h-px bg-slate-200 group-hover:bg-primary/30 transition-colors" />
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-auto" />
-              </div>
-            </div>
-
-            {/* DIREITA — contato consultivo */}
-            <div className="h-full md:pl-6">
-              <div className="h-full rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm flex flex-col">
-                {/* Badge interna mantém cor própria sem alterar o fundo da section */}
-                <div className="inline-flex items-center gap-2 rounded-full bg-secondary/40 px-3 py-1 text-xs font-medium text-slate-700">
-                  <PhoneCall className="h-4 w-4" /> Atendimento consultivo
-                </div>
-
-                <h3 className="mt-3 text-xl font-semibold">Prefere começar com ajuda do nosso time?</h3>
-                <p className="mt-2 text-slate-600">
-                  Deixe seu WhatsApp e um consultor entra em contato para entender sua necessidade e indicar a melhor
-                  solução para a sua empresa.
-                </p>
-
-                <ul className="mt-4 space-y-2 text-slate-700">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary/70" />
-                    Atendimento rápido e humanizado
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary/70" />
-                    Indicação do melhor fit de benefícios
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary/70" />
-                    Sem compromisso — é só conversar
-                  </li>
-                </ul>
-
-                <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                  <a href="#lead" aria-label="Falar pelo WhatsApp">
-                    <Button size="lg" className="w-full sm:w-auto">
-                      Falar pelo WhatsApp
-                    </Button>
-                  </a>
-                  <a href="#lead" aria-label="Preencher formulário">
-                    <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                      Preencher formulário
-                    </Button>
-                  </a>
-                </div>
-
-                <p className="mt-2 flex items-center gap-2 text-xs text-slate-500">
-                  <MessageSquare className="h-4 w-4" />
-                  Resposta em minutos no horário comercial.
-                </p>
-
-                <div className="mt-auto" />
-              </div>
+          {/* Consultivo */}
+          <div className="rounded-2xl shadow-sm border bg-white p-6 md:p-8 text-left">
+            <h3 className="text-lg md:text-xl font-semibold mb-2">Quer uma recomendação personalizada?</h3>
+            <p className="text-slate-600 mb-4">
+              Nosso time analisa seu caso e entrega um <strong>plano com ROI, prazos e onboarding</strong>.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 mb-2">
+              <Button
+                onClick={() => {
+                  const el = document.getElementById("formulario");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                aria-label="Agendar diagnóstico"
+              >
+                Agendar diagnóstico
+              </Button>
+              <Button
+                variant="outline"
+                asChild
+                aria-label="Falar no WhatsApp"
+              >
+                <a
+                  href="https://wa.me/5511999999999?text=Quero+um+diagnóstico+personalizado&utm_source=site"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Falar no WhatsApp
+                </a>
+              </Button>
             </div>
           </div>
         </div>
+
+        {/* Bullets estratégicos */}
+        <div className="grid md:grid-cols-3 gap-6 mt-10">
+          <div className="flex gap-3 items-start">
+            <span className="text-green-600 text-lg">✓</span>
+            <p className="text-slate-700 text-sm">
+              <strong>Estimativa de economia</strong> e <strong>projeção de ROI</strong> para seu cenário
+            </p>
+          </div>
+          <div className="flex gap-3 items-start">
+            <span className="text-green-600 text-lg">✓</span>
+            <p className="text-slate-700 text-sm">
+              <strong>Redução de absenteísmo</strong> e controle de <strong>sinistralidade</strong>
+            </p>
+          </div>
+          <div className="flex gap-3 items-start">
+            <span className="text-green-600 text-lg">✓</span>
+            <p className="text-slate-700 text-sm">
+              <strong>Onboarding rápido</strong> e <strong>relatórios claros</strong> para RH e CFO
+            </p>
+          </div>
+        </div>
+
+        {/* Microcópias de confiança */}
+        <p className="text-sm text-slate-500 mt-6 text-center">
+          Relatórios com indicadores de <strong>economia, adesão e uso</strong> por centro de custo. Média de ativação: <strong>3–5 dias úteis</strong>.
+        </p>
       </div>
     </section>
   );
