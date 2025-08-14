@@ -1,11 +1,12 @@
-// components/sections/Testimonials.tsx
 import { memo } from "react";
 import { Card } from "../ui/card";
 
+// Fotos dos depoentes
 import Ana from "@/assets/testimonials/ana-ribeiro.png";
 import Carlos from "@/assets/testimonials/carlos-mendes.png";
 import Marcos from "@/assets/testimonials/marcos-azevedo.png";
 
+// Estrutura de cada depoimento
 type Testimonial = {
   name: string;
   role: string;
@@ -13,8 +14,10 @@ type Testimonial = {
   photo?: string;
 };
 
+// Imagem padrão caso a foto falhe
 const FALLBACK_AVATAR = "/images/avatar-fallback.jpg";
 
+// Lista fixa de depoimentos exibidos
 function getTestimonials(): Testimonial[] {
   return [
     {
@@ -41,9 +44,11 @@ function getTestimonials(): Testimonial[] {
   ];
 }
 
+// Card individual de depoimento
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
     <Card className="h-full overflow-hidden">
+      {/* Foto do depoente */}
       <div className="w-full bg-slate-100" style={{ aspectRatio: "3 / 2" }}>
         <img
           src={t.photo || FALLBACK_AVATAR}
@@ -56,6 +61,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
         />
       </div>
 
+      {/* Nome, cargo e depoimento */}
       <div className="flex flex-col flex-1 p-6 sm:p-7">
         <div className="mb-2">
           <h3 className="text-lg font-semibold leading-tight">{t.name}</h3>
@@ -71,16 +77,16 @@ function TestimonialsSection() {
   const items = getTestimonials();
 
   return (
-    // ✅ Apliquei o mesmo padrão do Location: `section-green` para o fundo verde clarinho
     <section className="relative py-16 md:py-24 section-green">
-      {/* Linha no topo - verde clarinho */}
+      {/* Linha no topo */}
       <div
-      //O que gera a linha é justamente a própria div com configuração bottom-0 left-0 , dá altura de 1 pixel e cria essa linha. Além disso, depende completamente da div pai ( section ) ser relative !
+        // Depende da section ser relative para posicionar corretamente
         className="absolute top-0 left-0 w-full h-px"
         style={{ backgroundColor: "#D2EAD2" }}
       />
 
       <div className="container mx-auto px-4 max-w-7xl">
+        {/* Cabeçalho da section */}
         <header className="mx-auto mb-10 max-w-2xl text-center">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
             O que líderes empresariais dizem
@@ -90,6 +96,7 @@ function TestimonialsSection() {
           </p>
         </header>
 
+        {/* Grade de cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 place-items-stretch">
           {items.map((t) => (
             <TestimonialCard key={t.name} t={t} />
@@ -97,7 +104,7 @@ function TestimonialsSection() {
         </div>
       </div>
 
-      {/* Linha na base - verde clarinho */}
+      {/* Linha na base */}
       <div
         className="absolute bottom-0 left-0 w-full h-px"
         style={{ backgroundColor: "#D2EAD2" }}

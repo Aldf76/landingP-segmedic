@@ -3,9 +3,10 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../ui/accordion";
-import { MessageSquareText, Phone, MessageCircle } from "lucide-react";
+} from "../ui/accordion"; // Componente de acordeão para abrir/fechar respostas
+import { MessageSquareText, Phone, MessageCircle } from "lucide-react"; // Ícones laterais
 
+// Lista de perguntas e respostas do FAQ
 const faqs = [
   {
     q: "O que é o programa de descontos SegMedic?",
@@ -34,7 +35,8 @@ export default function FAQ() {
     <section className="relative py-16 md:py-24 bg-[#F4FAF4]">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="mx-auto max-w-6xl">
-          {/* Header */}
+          
+          {/* Cabeçalho do FAQ */}
           <header className="mb-5 text-center ">
             <h2 className="text-3xl md:text-4xl font-semibold text-[#1E2547]">
               Dúvidas frequentes
@@ -44,9 +46,9 @@ export default function FAQ() {
             </p>
           </header>
 
-          {/* Grid layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-            {/* Lateral esquerda */}
+            
+            {/* Coluna lateral com atalhos de contato */}
             <aside className="lg:col-span-4 space-y-4">
               {[
                 {
@@ -89,7 +91,7 @@ export default function FAQ() {
               ))}
             </aside>
 
-            {/* Acordeão de perguntas */}
+            {/* Coluna principal com acordeão de perguntas */}
             <div className="lg:col-span-8">
               <div className="rounded-3xl p-1 bg-[#1E2547]/10">
                 <div className="rounded-3xl p-4 md:p-6 bg-white">
@@ -104,6 +106,7 @@ export default function FAQ() {
                           className="text-left py-5 md:py-6 px-4 font-medium hover:no-underline data-[state=open]:bg-slate-50 rounded-2xl"
                         >
                           <span className="flex items-start gap-3">
+                            {/* Número da pergunta */}
                             <span className="mt-0.5 inline-flex size-6 items-center justify-center rounded-full bg-[#1E2547]/10 text-[#1E2547] text-sm font-semibold">
                               {(i + 1).toString().padStart(2, "0")}
                             </span>
@@ -119,6 +122,7 @@ export default function FAQ() {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>

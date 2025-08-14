@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Input } from "../../components/ui/input";
-import Button from "../../components/ui/button";
-import { Label } from "../../components/ui/label";
-import { leadFormSchema, type LeadFormData } from "../lead/schema";
+import { Input } from "../../components/ui/input"; // Campo de texto padrão
+import Button from "../../components/ui/button";   // Botão reutilizável
+import { Label } from "../../components/ui/label"; // Label estilizado
+import { leadFormSchema, type LeadFormData } from "../lead/schema"; // Validação com Zod
 
+// Possíveis erros mapeados para cada campo
 type ErrorMap = {
   name?: string;
   email?: string;
@@ -13,15 +14,18 @@ type ErrorMap = {
 };
 
 export default function LeadForm() {
+  // Estado para controle de envio e validação
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<ErrorMap>({});
 
+  // Função de envio do formulário
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors({});
     setSent(false);
 
+    // Captura os dados dos campos
     const f = new FormData(e.currentTarget);
     const values: LeadFormData = {
       name: String(f.get("name") || ""),
@@ -31,6 +35,7 @@ export default function LeadForm() {
       phone: (f.get("phone") as string) || undefined,
     };
 
+    // Validação via Zod
     const parsed = leadFormSchema.safeParse(values);
     if (!parsed.success) {
       const out: ErrorMap = {};
@@ -42,8 +47,8 @@ export default function LeadForm() {
       return;
     }
 
+    // Simulação de envio
     setLoading(true);
-
     setTimeout(() => {
       setLoading(false);
       setSent(true);
@@ -56,7 +61,10 @@ export default function LeadForm() {
       onSubmit={onSubmit}
       className="w-full rounded-2xl p-6 md:p-8 bg-white shadow-xl space-y-6"
     >
+      {/* Grade dos campos */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        {/* Nome */}
         <div>
           <Label htmlFor="name">Nome *</Label>
           <Input
@@ -70,6 +78,7 @@ export default function LeadForm() {
           )}
         </div>
 
+        {/* E-mail */}
         <div>
           <Label htmlFor="email">E-mail corporativo *</Label>
           <Input
@@ -84,6 +93,7 @@ export default function LeadForm() {
           )}
         </div>
 
+        {/* Empresa */}
         <div>
           <Label htmlFor="company">Empresa *</Label>
           <Input
@@ -97,6 +107,7 @@ export default function LeadForm() {
           )}
         </div>
 
+        {/* Qtd. funcionários */}
         <div>
           <Label htmlFor="employees">Qtd. de funcionários *</Label>
           <select
@@ -119,6 +130,7 @@ export default function LeadForm() {
           )}
         </div>
 
+        {/* Telefone */}
         <div className="md:col-span-2">
           <Label htmlFor="phone">Telefone (opcional)</Label>
           <Input
@@ -134,6 +146,7 @@ export default function LeadForm() {
         </div>
       </div>
 
+      {/* Botão de envio */}
       <Button
         className="w-full md:w-auto px-8 rounded-full"
         size="lg"
@@ -143,6 +156,7 @@ export default function LeadForm() {
         {loading ? "Enviando..." : "Solicitar proposta"}
       </Button>
 
+      {/* Mensagem de sucesso */}
       {sent && (
         <p className="text-sm font-medium text-green-700">
           Recebemos seus dados! Em breve entraremos em contato.

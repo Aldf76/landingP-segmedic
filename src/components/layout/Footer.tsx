@@ -1,8 +1,8 @@
-import { Mail, Instagram, Facebook, Linkedin } from "lucide-react";
-import logo from "@/assets/logo.png";
+import { Mail, Instagram, Facebook, Linkedin } from "lucide-react"; // Ícones de contato e redes sociais
+import logo from "@/assets/logo.png"; // Logo SegMedic
 
 export default function Footer() {
-  const year = new Date().getFullYear();
+  const year = new Date().getFullYear(); // Ano atual para o copyright
 
   return (
     <footer
@@ -10,9 +10,10 @@ export default function Footer() {
       className="relative text-gray-100"
       style={{ backgroundColor: "#1E3240" }}
     >
-      {/* Conteúdo */}
+      {/* Área principal do rodapé */}
       <div className="container mx-auto grid gap-8 px-4 py-12 md:grid-cols-4">
-        {/* Logo + Descrição */}
+        
+        {/* Coluna 1: Logo + descrição */}
         <div>
           <a href="#hero" className="flex items-center h-10" aria-label="SegMedic - Início">
             <img
@@ -28,7 +29,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Programa */}
+        {/* Coluna 2: Links de navegação do programa */}
         <div>
           <h4 className="font-semibold">Programa</h4>
           <ul className="mt-3 space-y-2 text-sm">
@@ -55,7 +56,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Suporte */}
+        {/* Coluna 3: Contatos e suporte */}
         <div>
           <h4 className="font-semibold">Suporte</h4>
           <ul className="mt-3 space-y-2 text-sm">
@@ -70,7 +71,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Social */}
+        {/* Coluna 4: Redes sociais */}
         <div>
           <h4 className="font-semibold">Siga</h4>
           <div className="mt-3 flex items-center gap-4 text-gray-300">
@@ -102,7 +103,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Barra inferior */}
+      {/* Barra inferior de direitos e links legais */}
       <div className="border-t border-gray-500">
         <div className="container mx-auto flex flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-gray-400 md:flex-row">
           <p>© {year} SegMedic. Todos os direitos reservados.</p>

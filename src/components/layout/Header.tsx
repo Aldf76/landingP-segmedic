@@ -1,8 +1,9 @@
 import { useState } from "react";
-import Button from "../ui/button";
-import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
+import Button from "../ui/button"; // Botão reutilizável
+import { Menu, X } from "lucide-react"; // Ícones para abrir/fechar menu mobile
+import logo from "@/assets/logo.png"; // Logo da SegMedic
 
+// Links de navegação
 const nav = [
   { href: "#benefits", label: "Por que usar ?" },
   { href: "#how-it-works", label: "Como funciona" },
@@ -12,7 +13,7 @@ const nav = [
 ];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // Controle de abertura do menu mobile
 
   return (
     <header
@@ -20,7 +21,8 @@ export default function Header() {
       style={{ backgroundColor: "#2C4759" }}
     >
       <div className="container mx-auto flex items-center justify-between px-4 h-full">
-        {/* Logo ocupa exatamente a altura do header */}
+        
+        {/* Logo alinhada à esquerda */}
         <a href="#hero" className="flex items-center h-full" aria-label="SegMedic - Início">
           <img
             src={logo}
@@ -31,7 +33,7 @@ export default function Header() {
           />
         </a>
 
-        {/* Navegação desktop */}
+        {/* Navegação para desktop */}
         <nav className="hidden md:flex items-center gap-6">
           {nav.map((item) => (
             <a
@@ -47,7 +49,7 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* Botão mobile */}
+        {/* Botão para abrir/fechar menu mobile */}
         <button
           className="md:hidden p-2 text-gray-100"
           aria-label="Abrir menu"
@@ -57,7 +59,7 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Menu mobile */}
+      {/* Menu mobile visível apenas se `open` for true */}
       {open && (
         <div className="md:hidden border-t border-gray-500" style={{ backgroundColor: "#2C4759" }}>
           <nav className="container mx-auto flex flex-col gap-2 px-4 py-3">
