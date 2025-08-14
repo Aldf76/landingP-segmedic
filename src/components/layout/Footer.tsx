@@ -1,21 +1,28 @@
 import { Mail, Instagram, Facebook, Linkedin } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer
+      id="footer"
       className="relative text-gray-100"
       style={{ backgroundColor: "#1E3240" }}
     >
       {/* Conteúdo */}
       <div className="container mx-auto grid gap-8 px-4 py-12 md:grid-cols-4">
-        {/* Brand */}
+        {/* Logo + Descrição */}
         <div>
-          <div className="flex items-center gap-2 font-bold text-lg">
-            <span className="inline-block h-6 w-6 rounded-md bg-[#D8282C]" />
-            <span>SegMedic</span>
-          </div>
+          <a href="#hero" className="flex items-center h-10" aria-label="SegMedic - Início">
+            <img
+              src={logo}
+              alt="SegMedic"
+              className="block h-full w-auto max-h-full"
+              decoding="async"
+              loading="lazy"
+            />
+          </a>
           <p className="mt-3 text-gray-300 text-sm">
             Programa de descontos para consultas e exames na rede parceira.
           </p>
@@ -67,13 +74,28 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold">Siga</h4>
           <div className="mt-3 flex items-center gap-4 text-gray-300">
-            <a aria-label="Instagram" href="#">
+            <a
+              aria-label="Instagram"
+              href="https://www.instagram.com/segmedicsaude/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Instagram />
             </a>
-            <a aria-label="Facebook" href="#">
+            <a
+              aria-label="Facebook"
+              href="https://www.facebook.com/segmedicsaude/?locale=pt_BR"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Facebook />
             </a>
-            <a aria-label="LinkedIn" href="#">
+            <a
+              aria-label="LinkedIn"
+              href="https://www.linkedin.com/company/segmedic/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Linkedin />
             </a>
           </div>

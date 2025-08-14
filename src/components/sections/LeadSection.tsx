@@ -1,9 +1,9 @@
 
-import LeadForm from "../../features/lead/LeadForm"; // ajuste conforme seu projeto
+import LeadForm from "../../features/lead/LeadForm"; 
 
 export default function LeadSection() {
     return (
-      <section id="lead" className="bg-sky-50 py-12 md:py-16">
+      <section id="lead" className="bg-sky-50 py-10 md:py-10">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
             {/* Texto + Lista + Botão */}
@@ -40,6 +40,7 @@ export default function LeadSection() {
             </div>
           </div>
         </div>
+
       </section>
     );
   }

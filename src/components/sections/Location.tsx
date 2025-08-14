@@ -1,4 +1,11 @@
-import { Loader2, Home, MapPin, Route, ExternalLink, CheckCircle2 } from "lucide-react";
+import {
+  Loader2,
+  Home,
+  MapPin,
+  Route,
+  ExternalLink,
+  CheckCircle2,
+} from "lucide-react";
 import React from "react";
 
 function Stat({
@@ -78,23 +85,32 @@ const PLACES: Place[] = [
 
 export default function LocationCoverageGoogle() {
   return (
-    <section id="locations" className="relative py-16 md:py-24 bg-green-50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-2xl">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Onde atendemos</h2>
-          <p className="mt-3 text-slate-600">
+    <section id="locations" className="bg-green-50 py-12 md:py-16">
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Título centralizado */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+            Onde atendemos
+          </h2>
+          <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
             Veja no mapa os principais pontos de atuação. Atuamos via unidades físicas e{" "}
             <span className="font-medium">atendimento domiciliar</span>.
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Mapa + Painel */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
           {/* Mapa */}
           <div className="lg:col-span-2">
             <div className="rounded-3xl shadow-lg border bg-white p-3">
-              <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
-                {/* Overlay de carregamento */}
-                <div className="absolute inset-0 z-10 grid place-items-center pointer-events-none" id="map-loader">
+              <div
+                className="relative rounded-2xl overflow-hidden"
+                style={{ aspectRatio: "16 / 9" }}
+              >
+                <div
+                  className="absolute inset-0 z-10 grid place-items-center pointer-events-none"
+                  id="map-loader"
+                >
                   <div className="flex items-center gap-3 rounded-full bg-white/85 px-3 py-1.5 shadow-sm">
                     <Loader2 className="h-4 w-4 animate-spin text-[#1E2547]" />
                     <span className="text-sm text-slate-600">Carregando mapa…</span>
@@ -119,8 +135,12 @@ export default function LocationCoverageGoogle() {
           {/* Painel lateral */}
           <aside className="flex flex-col gap-4">
             <div className="rounded-2xl bg-white p-5 border shadow-sm">
-              <h3 className="text-lg font-semibold">Capilaridade do atendimento</h3>
-              <p className="mt-1 text-slate-600 text-sm">Cobertura por unidades e atendimento domiciliar.</p>
+              <h3 className="text-lg font-semibold">
+                Capilaridade do atendimento
+              </h3>
+              <p className="mt-1 text-slate-600 text-sm">
+                Cobertura por unidades e atendimento domiciliar.
+              </p>
 
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Stat value={`+${COVERAGE.unitsCount}`} label="unidades" icon={Home} />
@@ -156,14 +176,19 @@ export default function LocationCoverageGoogle() {
         </div>
 
         {/* Lista de locais */}
-        <div className="mt-8 lg:mt-10 grid grid-cols-1">
+        <div className="mt-12">
           <div className="rounded-2xl border bg-white p-5 shadow-sm">
             <h3 className="text-lg font-semibold">Locais destacados</h3>
-            <p className="mt-1 text-slate-600 text-sm">Veja alguns pontos de atuação mostrados no mapa.</p>
+            <p className="mt-1 text-slate-600 text-sm">
+              Veja alguns pontos de atuação mostrados no mapa.
+            </p>
 
             <ul className="mt-4 divide-y divide-slate-100">
               {PLACES.map((p) => (
-                <li key={p.name} className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                <li
+                  key={p.name}
+                  className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4"
+                >
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <span
@@ -177,7 +202,9 @@ export default function LocationCoverageGoogle() {
                       </span>
                       <strong className="text-slate-800">{p.name}</strong>
                     </div>
-                    <div className="text-xs text-slate-500 mt-0.5">{p.city}</div>
+                    <div className="text-xs text-slate-500 mt-0.5">
+                      {p.city}
+                    </div>
                   </div>
 
                   <div className="flex items-center gap-2">

@@ -1,12 +1,11 @@
 import { Card } from "../ui/card";
-import { Badge } from "../ui/badge";
 import Button from "../ui/button";
 import {
-  Wallet,
-  FlaskConical,
+  HandCoins,
   Stethoscope,
   Brain,
-  Salad,
+  ShieldCheck,
+  Users,
   BarChart3,
 } from "lucide-react";
 
@@ -18,34 +17,34 @@ type Item = {
 
 const items: Item[] = [
   {
-    icon: Wallet,
-    title: "Redução de custos",
-    desc: "Modelos de benefício que diminuem o gasto com saúde sem perder qualidade.",
-  },
-  {
-    icon: FlaskConical,
-    title: "Exames laboratoriais",
-    desc: "Acesso facilitado à rede parceira para check-ups e exames de rotina.",
+    icon: HandCoins,
+    title: "Controle de custos",
+    desc: "Modelos flexíveis que reduzem despesas com saúde e trazem previsibilidade orçamentária.",
   },
   {
     icon: Stethoscope,
-    title: "Consultas e telemedicina",
-    desc: "Atendimento ágil para o seu time, presencial ou online, sem burocracia.",
+    title: "Atendimento completo",
+    desc: "Rede credenciada para consultas, telemedicina e exames, com até 80% de desconto.",
   },
   {
     icon: Brain,
-    title: "Apoio psicológico",
-    desc: "Cuidado com a saúde mental para aumentar bem-estar e produtividade.",
+    title: "Apoio à saúde mental",
+    desc: "Programas de acompanhamento psicológico para melhorar bem-estar e engajamento.",
   },
   {
-    icon: Salad,
-    title: "Nutrição e bem-estar",
-    desc: "Acompanhamento alimentar e orientação para hábitos saudáveis.",
+    icon: ShieldCheck,
+    title: "Prevenção e bem-estar",
+    desc: "Acompanhamento nutricional e ações preventivas que reduzem afastamentos.",
+  },
+  {
+    icon: Users,
+    title: "Agilidade para RH",
+    desc: "Onboarding rápido de novos colaboradores e suporte humano dedicado.",
   },
   {
     icon: BarChart3,
-    title: "Relatórios e gestão",
-    desc: "Dados claros para RH tomar decisões e acompanhar indicadores.",
+    title: "Gestão orientada a dados",
+    desc: "Relatórios claros para medir ROI, acompanhar indicadores e apoiar decisões estratégicas.",
   },
 ];
 
@@ -53,22 +52,20 @@ export default function Benefits() {
   return (
     <section
       id="benefits"
-      className="section-y section-divider relative overflow-hidden"
+      className="relative overflow-hidden bg-sky-50 py-12 md:py-16 section-divider"
     >
       {/* Curva no fim da section */}
       <div className="absolute bottom-0 left-0 w-full h-12 bg-background rounded-t-[50%]" />
 
-      <div className="section-container relative z-10">
-        <div className="max-w-2xl">
-          <Badge variant="secondary">Benefícios</Badge>
-          <h2 className="mt-3 section-title">
-            Benefícios para você e seus colaboradores !
-          </h2>
-          <p className="section-subtitle">
-            O pacote Segmedic para empresas prioriza redução de custos, acesso
-            rápido e cuidado contínuo.
-          </p>
-        </div>
+      <div className="section-container relative z-10 text-center">
+
+        <h2 className="mt-4 text-3xl md:text-4xl font-semibold text-slate-900">
+          Benefícios para você e seus colaboradores!
+        </h2>
+
+        <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
+          O pacote Segmedic para empresas prioriza redução de custos, acesso rápido e cuidado contínuo.
+        </p>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {items.map(({ icon: Icon, title, desc }) => (
@@ -88,14 +85,13 @@ export default function Benefits() {
           ))}
         </div>
 
-        <div className="mt-12 text-center ">
+        <div className="mt-10">
           <a href="#lead" aria-label="Ir para o formulário de contato">
             <Button size="lg">Quero conhecer todos os benefícios</Button>
           </a>
         </div>
       </div>
 
-      {/* Linha de separação no fim da section */}
       <div
         className="absolute bottom-0 left-0 w-full h-px"
         style={{ backgroundColor: "#D2EAD2" }}
