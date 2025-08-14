@@ -42,6 +42,9 @@ function App() {
       {/* CTA + Formulário corrigido */}
       <LeadSection />
 
+        {/* LINHA DIVISÓRIA */}
+        <div className="w-full h-px bg-[#D2EAD2]  " aria-hidden />
+
       {/* FAQ */}
       <section id="faq">
         <FAQ />
