@@ -4,10 +4,11 @@ import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const nav = [
-  { href: "#benefits", label: "Benefícios" },
+  { href: "#benefits", label: "Por que usar ?" },
   { href: "#how-it-works", label: "Como funciona" },
-  { href: "#testimonials", label: "Depoimentos" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#testimonials", label: "Quem indica ?" },
+  { href: "#faq", label: "Dúvidas" },
+  { href: "#footer", label: "Fale Conosco" },
 ];
 
 export default function Header() {
@@ -42,7 +43,7 @@ export default function Header() {
             </a>
           ))}
           <a href="#lead">
-            <Button size="sm">Quero meu desconto</Button>
+            <Button size="sm">Quero cuidar do meu time!</Button>
           </a>
         </nav>
 
