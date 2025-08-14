@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Input } from "../../components/ui/input";
 import Button from "../../components/ui/button";
 import { Label } from "../../components/ui/label";
-import { leadFormSchema, type LeadFormData } from "../lead/schema"; // <-- ajuste o caminho
+import { leadFormSchema, type LeadFormData } from "../lead/schema";
 
+// Mapeamento de possíveis erros por campo
 type ErrorMap = {
   name?: string;
   email?: string;
@@ -13,15 +14,18 @@ type ErrorMap = {
 };
 
 export default function LeadForm() {
+  // Estados para controle de envio e feedback
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<ErrorMap>({});
 
+  // Envio do formulário
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors({});
     setSent(false);
 
+    // Coleta e normaliza os valores do formulário
     const f = new FormData(e.currentTarget);
     const values: LeadFormData = {
       name: String(f.get("name") || ""),
@@ -31,6 +35,7 @@ export default function LeadForm() {
       phone: (f.get("phone") as string) || undefined,
     };
 
+    // Validação com Zod (leadFormSchema)
     const parsed = leadFormSchema.safeParse(values);
     if (!parsed.success) {
       const out: ErrorMap = {};
@@ -45,17 +50,22 @@ export default function LeadForm() {
     setLoading(true);
     console.log("Lead válido:", parsed.data);
 
-    // simulação de envio
+    // Simulação de envio assíncrono
     setTimeout(() => {
       setLoading(false);
-      setSent(true);               // usamos o estado (evita warning de var não lida)
+      setSent(true);
       e.currentTarget.reset();
     }, 600);
   };
 
   return (
+    // ===== Formulário de Captura de Leads =====
+    // Coleta dados da empresa e contato para proposta
     <form onSubmit={onSubmit} className="w-full max-w-3xl rounded-2xl p-6 md:p-8 bg-white shadow-xl">
+      
+      {/* Campos do formulário */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
         <div>
           <Label htmlFor="name">Nome *</Label>
           <Input id="name" name="name" placeholder="Seu nome" className="rounded-full" />
@@ -99,11 +109,12 @@ export default function LeadForm() {
         </div>
       </div>
 
+      {/* Botão de envio */}
       <Button className="mt-6 w-full md:w-auto px-8 rounded-full" size="lg" type="submit" disabled={loading}>
         {loading ? "Enviando..." : "Solicitar proposta"}
       </Button>
 
-      {/* feedback de sucesso (lê `sent` para evitar warning de var não usada) */}
+      {/* Mensagem de confirmação */}
       {sent && (
         <p role="status" aria-live="polite" className="mt-3 text-sm font-medium text-green-700">
           Recebemos seus dados! Em breve entraremos em contato.

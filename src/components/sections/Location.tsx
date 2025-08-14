@@ -1,6 +1,7 @@
 import { Loader2, Home, MapPin, Route, ExternalLink, CheckCircle2 } from "lucide-react";
 import React from "react";
 
+// Componente de KPI (valor + rótulo + ícone)
 function Stat({
   value,
   label,
@@ -23,20 +24,23 @@ function Stat({
   );
 }
 
+// Dados gerais de cobertura
 const COVERAGE = {
   unitsCount: 9,
   citiesCount: 20,
   note: "Inclui atendimento domiciliar na Baixada e Zona Oeste do RJ.",
 };
 
+// Tipo para cada local exibido
 type Place = {
   name: string;
   type: "Unidade" | "Domiciliar";
   city: string;
-  maps: string;   // link do Google Maps (busca/place)
-  route?: string; // opcional: link direto de rota
+  maps: string;   // link do Google Maps
+  route?: string; // link opcional para rota
 };
 
+// Lista de locais destacados
 const PLACES: Place[] = [
   {
     name: "Unidade Matriz – Nova Iguaçu (Centro)",
@@ -54,7 +58,7 @@ const PLACES: Place[] = [
     name: "Unidade São João de Meriti",
     type: "Unidade",
     city: "Rio de Janeiro (São João de Meriti)",
-    maps: "https://www.google.com/maps/place/R.+S%C3%A3o+Jo%C3%A3o+Batista,+172+-+Centro,+S%C3%A3o+Jo%C3%A3o+de+Meriti+-+RJ,+25515-520/@-22.8035278,-43.3669857,17z/data=!3m1!4b1!4m6!3m5!1s0x9964f54724f4b1:0x49447faefe63c833!8m2!3d-22.8035278!4d-43.3669857!16s%2Fg%2F11bw44h3f1?entry=ttu&g_ep=EgoyMDI1MDgxMC4wIKXMDSoASAFQAw%3D%3D",
+    maps: "https://www.google.com/maps/place/R.+S%C3%A3o+Jo%C3%A3o+Batista,+172...",
   },
   {
     name: "Unidade Campo Grande",
@@ -78,8 +82,12 @@ const PLACES: Place[] = [
 
 export default function LocationCoverageGoogle() {
   return (
+    // ===== Seção de Cobertura Geográfica =====
+    // Exibe mapa interativo e lista de locais atendidos
     <section id="locations" className="relative py-16 md:py-24 bg-slate-50">
       <div className="container mx-auto px-4">
+        
+        {/* Cabeçalho da seção */}
         <div className="max-w-2xl">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Onde atendemos</h2>
           <p className="mt-3 text-slate-600">
@@ -88,12 +96,15 @@ export default function LocationCoverageGoogle() {
           </p>
         </div>
 
+        {/* Grid principal: mapa + painel lateral */}
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Mapa (My Maps) */}
+          
+          {/* Mapa Google My Maps */}
           <div className="lg:col-span-2">
             <div className="rounded-3xl shadow-lg border bg-white p-3">
               <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "16 / 9" }}>
-                {/* overlay de carregamento simpático */}
+                
+                {/* Overlay de carregamento */}
                 <div className="absolute inset-0 z-10 grid place-items-center pointer-events-none" id="map-loader">
                   <div className="flex items-center gap-3 rounded-full bg-white/85 px-3 py-1.5 shadow-sm">
                     <Loader2 className="h-4 w-4 animate-spin text-[#1E2547]" />
@@ -101,6 +112,7 @@ export default function LocationCoverageGoogle() {
                   </div>
                 </div>
 
+                {/* Iframe com o mapa */}
                 <iframe
                   src="https://www.google.com/maps/d/u/0/embed?mid=1knPvaX1NMlLGUq7DI4yw2BGEzEOy1EE&ehbc=2E312F"
                   className="h-full w-full border-0"
@@ -116,18 +128,19 @@ export default function LocationCoverageGoogle() {
             </div>
           </div>
 
-          {/* Painel lateral (KPIs + bullets + CTA) */}
+          {/* Painel lateral: KPIs, bullets e CTA */}
           <aside className="flex flex-col gap-4">
             <div className="rounded-2xl bg-white p-5 border shadow-sm">
               <h3 className="text-lg font-semibold">Capilaridade do atendimento</h3>
               <p className="mt-1 text-slate-600 text-sm">Cobertura por unidades e atendimento domiciliar.</p>
 
+              {/* Estatísticas principais */}
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Stat value={`+${COVERAGE.unitsCount}`} label="unidades" icon={Home} />
                 <Stat value={`+${COVERAGE.citiesCount}`} label="cidades atendidas" icon={MapPin} />
               </div>
 
-              {/* Bullets rápidos */}
+              {/* Lista rápida de diferenciais */}
               <ul className="mt-4 space-y-2 text-sm text-slate-700">
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-[#D8282C]" />
@@ -146,7 +159,7 @@ export default function LocationCoverageGoogle() {
               <p className="mt-3 text-xs text-slate-500">{COVERAGE.note}</p>
             </div>
 
-            {/* CTA principal */}
+            {/* Botão CTA para contato via WhatsApp */}
             <a
               href="https://wa.me/55XXXXXXXXXXX"
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#1E2547] px-5 py-3 text-white font-medium hover:opacity-90 transition"
@@ -157,7 +170,7 @@ export default function LocationCoverageGoogle() {
           </aside>
         </div>
 
-        {/* Lista de locais (abaixo do grid) */}
+        {/* Lista detalhada de locais */}
         <div className="mt-8 lg:mt-10 grid grid-cols-1">
           <div className="rounded-2xl border bg-white p-5 shadow-sm">
             <h3 className="text-lg font-semibold">Locais destacados</h3>
@@ -166,6 +179,8 @@ export default function LocationCoverageGoogle() {
             <ul className="mt-4 divide-y divide-slate-100">
               {PLACES.map((p) => (
                 <li key={p.name} className="py-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  
+                  {/* Identificação do local */}
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <span
@@ -182,6 +197,7 @@ export default function LocationCoverageGoogle() {
                     <div className="text-xs text-slate-500 mt-0.5">{p.city}</div>
                   </div>
 
+                  {/* Ações: ver no mapa e traçar rota */}
                   <div className="flex items-center gap-2">
                     <a
                       href={p.maps}
@@ -209,7 +225,7 @@ export default function LocationCoverageGoogle() {
         </div>
       </div>
 
-      {/* Curva inferior de transição */}
+      {/* Curva inferior para transição visual */}
       <div className="pointer-events-none absolute -bottom-6 left-0 right-0 h-6 bg-white rounded-t-[24px]" />
     </section>
   );

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Accordion,
   AccordionContent,
@@ -8,6 +6,7 @@ import {
 } from "../ui/accordion";
 import { MessageSquareText, Phone, MessageCircle } from "lucide-react";
 
+// Lista de perguntas e respostas
 const faqs = [
   {
     q: "O que é o programa de descontos SegMedic?",
@@ -31,27 +30,29 @@ const faqs = [
   },
 ];
 
-
 export default function FAQHybrid() {
   return (
+    // ===== Seção de FAQ =====
+    // Lista perguntas frequentes e atalhos para contato
     <section
       className="
         relative py-16 md:py-24
-        bg-[--seg-secondary]/10  // TODO: mapeie para sua cor secundária
-        "
+        bg-[--seg-secondary]/10
+      "
     >
-      {/* Curvinha top (opcional) */}
+      {/* Curva superior decorativa */}
       <div
         className="absolute inset-x-0 -top-6 h-6 rounded-b-[2rem]
         bg-[--seg-secondary]/10 pointer-events-none"
         aria-hidden
       />
+
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
+
+          {/* Cabeçalho da seção */}
           <header className="mb-8 md:mb-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight
-              text-[--seg-primary]  // TODO: cor primária
-            ">
+            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-[--seg-primary]">
               Dúvidas frequentes
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
@@ -60,13 +61,12 @@ export default function FAQHybrid() {
           </header>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Coluna lateral (atalhos) */}
+
+            {/* Coluna lateral com links úteis */}
             <aside className="lg:col-span-4 space-y-4">
               <a
                 href="/ajuda"
-                className="block rounded-2xl border bg-background p-5 shadow-sm hover:shadow-md transition
-                  border-[--seg-primary]/20
-                "
+                className="block rounded-2xl border bg-background p-5 shadow-sm hover:shadow-md transition border-[--seg-primary]/20"
               >
                 <div className="flex items-center gap-3">
                   <div className="rounded-xl p-2 bg-[--seg-primary]/10">
@@ -83,9 +83,7 @@ export default function FAQHybrid() {
 
               <a
                 href="#contato"
-                className="block rounded-2xl border bg-background p-5 shadow-sm hover:shadow-md transition
-                  border-[--seg-primary]/20
-                "
+                className="block rounded-2xl border bg-background p-5 shadow-sm hover:shadow-md transition border-[--seg-primary]/20"
               >
                 <div className="flex items-center gap-3">
                   <div className="rounded-xl p-2 bg-[--seg-primary]/10">
@@ -104,9 +102,7 @@ export default function FAQHybrid() {
                 href="https://wa.me/55XXXXXXXXXXX"
                 target="_blank"
                 rel="noreferrer"
-                className="block rounded-2xl border bg-background p-5 shadow-sm hover:shadow-md transition
-                  border-[--seg-primary]/20
-                "
+                className="block rounded-2xl border bg-background p-5 shadow-sm hover:shadow-md transition border-[--seg-primary]/20"
               >
                 <div className="flex items-center gap-3">
                   <div className="rounded-xl p-2 bg-[--seg-primary]/10">
@@ -122,31 +118,16 @@ export default function FAQHybrid() {
               </a>
             </aside>
 
-            {/* Lista de FAQs (estilo “cards” arredondados, 1 aberta por vez) */}
+            {/* Lista de FAQs com acordeão */}
             <div className="lg:col-span-8">
-              <div
-                className="
-                  rounded-3xl p-1
-                  bg-[--seg-primary]  // TODO: faixa/halo primário
-                  "
-              >
-                <div className="
-                  rounded-3xl p-4 md:p-6
-                  bg-background
-                ">
-                  <Accordion
-                    type="single"
-                    collapsible
-                    className="w-full"
-                  >
+              <div className="rounded-3xl p-1 bg-[--seg-primary]">
+                <div className="rounded-3xl p-4 md:p-6 bg-background">
+                  <Accordion type="single" collapsible className="w-full">
                     {faqs.map((f, i) => (
                       <AccordionItem
                         key={i}
                         value={`faq-${i}`}
-                        className="
-                          group border-b last:border-b-0
-                          border-border/60
-                        "
+                        className="group border-b last:border-b-0 border-border/60"
                       >
                         <AccordionTrigger
                           className="
@@ -161,6 +142,7 @@ export default function FAQHybrid() {
                           "
                         >
                           <span className="flex items-start gap-3">
+                            {/* Número da pergunta */}
                             <span className="mt-0.5 inline-flex size-6 items-center justify-center rounded-full
                               bg-[--seg-primary]/10 text-[--seg-primary] text-sm font-semibold
                             ">
@@ -179,11 +161,12 @@ export default function FAQHybrid() {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
 
-      {/* Curvinha bottom (opcional) */}
+      {/* Curva inferior decorativa */}
       <div
         className="absolute inset-x-0 -bottom-6 h-6 rounded-t-[2rem]
         bg-[--seg-secondary]/10 pointer-events-none"

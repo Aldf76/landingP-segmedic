@@ -1,22 +1,23 @@
-// src/sections/Benefits.tsx
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
 import Button from "../ui/button";
 import {
-  Wallet,           // Redução de custos
-  FlaskConical,     // Exames laboratoriais
-  Stethoscope,      // Consultas/tele
-  Brain,            // Psicologia
-  Salad,            // Nutrição
-  BarChart3,        // Relatórios/gestão
+  Wallet,           // Ícone: redução de custos
+  FlaskConical,     // Ícone: exames laboratoriais
+  Stethoscope,      // Ícone: consultas/telemedicina
+  Brain,            // Ícone: apoio psicológico
+  Salad,            // Ícone: nutrição
+  BarChart3,        // Ícone: relatórios e gestão
 } from "lucide-react";
 
+// Tipo para cada item de benefício
 type Item = {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   title: string;
   desc: string;
 };
 
+// Lista de benefícios exibidos na seção
 const items: Item[] = [
   {
     icon: Wallet,
@@ -36,11 +37,11 @@ const items: Item[] = [
   {
     icon: Brain,
     title: "Apoio psicológico",
-    desc: "Cuidado com a saúde mental para aumentar bem‑estar e produtividade.",
+    desc: "Cuidado com a saúde mental para aumentar bem-estar e produtividade.",
   },
   {
     icon: Salad,
-    title: "Nutrição e bem‑estar",
+    title: "Nutrição e bem-estar",
     desc: "Acompanhamento alimentar e orientação para hábitos saudáveis.",
   },
   {
@@ -52,8 +53,12 @@ const items: Item[] = [
 
 export default function Benefits() {
   return (
+    // ===== Seção de Benefícios =====
+    // Apresenta os principais diferenciais oferecidos pela Segmedic para empresas e colaboradores
     <section id="benefits" className="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50">
       <div className="container mx-auto px-4">
+        
+        {/* Cabeçalho da seção */}
         <div className="max-w-2xl">
           <Badge variant="secondary">Benefícios</Badge>
           <h2 className="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">
@@ -64,27 +69,29 @@ export default function Benefits() {
           </p>
         </div>
 
+        {/* Grid de cards com cada benefício */}
         <div className="mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {items.map(({ icon: Icon, title, desc }) => (
             <Card
               key={title}
               className="group p-8 text-center rounded-2xl shadow-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
             >
-              {/* Ícone centralizado */}
+              {/* Ícone destacado no topo do card */}
               <div className="mx-auto grid place-items-center size-14 rounded-2xl bg-secondary/20 text-primary">
                 <Icon className="size-7" aria-hidden />
               </div>
 
-              {/* Separador simples */}
+              {/* Linha separadora entre ícone e conteúdo */}
               <div className="my-6 h-px w-16 mx-auto bg-slate-200 group-hover:bg-slate-300 transition-colors" />
 
+              {/* Título e descrição do benefício */}
               <h3 className="text-lg font-semibold">{title}</h3>
               <p className="mt-2 text-slate-600">{desc}</p>
             </Card>
           ))}
         </div>
 
-        {/* CTA final centralizado */}
+        {/* Botão CTA para conhecer todos os benefícios */}
         <div className="mt-12 text-center">
           <a href="#lead" aria-label="Ir para o formulário de contato">
             <Button size="lg">Quero conhecer todos os benefícios</Button>
