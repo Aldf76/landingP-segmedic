@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Input } from "../../components/ui/input";
 import Button from "../../components/ui/button";
 import { Label } from "../../components/ui/label";
-import { leadFormSchema, type LeadFormData } from "../lead/schema"; // <-- ajuste o caminho
+import { leadFormSchema, type LeadFormData } from "../lead/schema";
 
 type ErrorMap = {
   name?: string;
@@ -43,35 +43,58 @@ export default function LeadForm() {
     }
 
     setLoading(true);
-    console.log("Lead válido:", parsed.data);
 
-    // simulação de envio
     setTimeout(() => {
       setLoading(false);
-      setSent(true);               // usamos o estado (evita warning de var não lida)
+      setSent(true);
       e.currentTarget.reset();
     }, 600);
   };
 
   return (
-    <form onSubmit={onSubmit} className="w-full max-w-3xl rounded-2xl p-6 md:p-8 bg-white shadow-xl">
+    <form
+      onSubmit={onSubmit}
+      className="w-full rounded-2xl p-6 md:p-8 bg-white shadow-xl space-y-6"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <Label htmlFor="name">Nome *</Label>
-          <Input id="name" name="name" placeholder="Seu nome" className="rounded-full" />
-          {errors.name && <p className="text-sm text-red-600">{errors.name}</p>}
+          <Input
+            id="name"
+            name="name"
+            placeholder="Seu nome"
+            className="rounded-full"
+          />
+          {errors.name && (
+            <p className="text-sm text-red-600">{errors.name}</p>
+          )}
         </div>
 
         <div>
           <Label htmlFor="email">E-mail corporativo *</Label>
-          <Input id="email" name="email" type="email" placeholder="voce@empresa.com" className="rounded-full" />
-          {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="voce@empresa.com"
+            className="rounded-full"
+          />
+          {errors.email && (
+            <p className="text-sm text-red-600">{errors.email}</p>
+          )}
         </div>
 
         <div>
           <Label htmlFor="company">Empresa *</Label>
-          <Input id="company" name="company" placeholder="Nome da empresa" className="rounded-full" />
-          {errors.company && <p className="text-sm text-red-600">{errors.company}</p>}
+          <Input
+            id="company"
+            name="company"
+            placeholder="Nome da empresa"
+            className="rounded-full"
+          />
+          {errors.company && (
+            <p className="text-sm text-red-600">{errors.company}</p>
+          )}
         </div>
 
         <div>
@@ -80,32 +103,48 @@ export default function LeadForm() {
             id="employees"
             name="employees"
             defaultValue=""
-            className="w-full h-10 px-4 rounded-full border border-slate-300 bg-white"
+            className="w-full h-10 px-4 rounded-full border border-slate-300 bg-white text-sm"
           >
-            <option value="" disabled>Selecione…</option>
+            <option value="" disabled>
+              Selecione…
+            </option>
             <option value="1-20">1–20</option>
             <option value="21-50">21–50</option>
             <option value="51-200">51–200</option>
             <option value="201-500">201–500</option>
             <option value="500+">500+</option>
           </select>
-          {errors.employees && <p className="text-sm text-red-600">{errors.employees}</p>}
+          {errors.employees && (
+            <p className="text-sm text-red-600">{errors.employees}</p>
+          )}
         </div>
 
         <div className="md:col-span-2">
           <Label htmlFor="phone">Telefone (opcional)</Label>
-          <Input id="phone" name="phone" type="tel" inputMode="tel" placeholder="(11) 90000-0000" className="rounded-full" />
-          {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
+          <Input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="(11) 90000-0000"
+            className="rounded-full"
+          />
+          {errors.phone && (
+            <p className="text-sm text-red-600">{errors.phone}</p>
+          )}
         </div>
       </div>
 
-      <Button className="mt-6 w-full md:w-auto px-8 rounded-full" size="lg" type="submit" disabled={loading}>
+      <Button
+        className="w-full md:w-auto px-8 rounded-full"
+        size="lg"
+        type="submit"
+        disabled={loading}
+      >
         {loading ? "Enviando..." : "Solicitar proposta"}
       </Button>
 
-      {/* feedback de sucesso (lê `sent` para evitar warning de var não usada) */}
       {sent && (
-        <p role="status" aria-live="polite" className="mt-3 text-sm font-medium text-green-700">
+        <p className="text-sm font-medium text-green-700">
           Recebemos seus dados! Em breve entraremos em contato.
         </p>
       )}

@@ -6,21 +6,14 @@ import Ana from "@/assets/testimonials/ana-ribeiro.png";
 import Carlos from "@/assets/testimonials/carlos-mendes.png";
 import Marcos from "@/assets/testimonials/marcos-azevedo.png";
 
-/* =========================================================
- * O que cada card usa
- * =======================================================*/
 type Testimonial = {
   name: string;
-  role: string;   // cargo + empresa
-  quote: string;  // depoimento breve
-  photo?: string; // caminho da foto
+  role: string;
+  quote: string;
+  photo?: string;
 };
 
-/* =========================================================
- * Conteúdo preparado para “entrar redondo” na seção
- *  -> usamos a pasta /public/people (caminho absoluto)
- * =======================================================*/
-const FALLBACK_AVATAR = "/images/avatar-fallback.jpg"; // se alguma foto falhar
+const FALLBACK_AVATAR = "/images/avatar-fallback.jpg";
 
 function getTestimonials(): Testimonial[] {
   return [
@@ -45,30 +38,24 @@ function getTestimonials(): Testimonial[] {
         "A sinistralidade era um problema sério. Com ações preventivas e acesso facilitado, ganhamos previsibilidade orçamentária e equipe mais saudável.",
       photo: Marcos,
     },
-
   ];
 }
 
-/* =========================
- * Card
- * =======================*/
 function TestimonialCard({ t }: { t: Testimonial }) {
   return (
     <Card className="h-full overflow-hidden">
-      {/* Foto padronizada com crop/zoom suave (sem deformar) */}
       <div className="w-full bg-slate-100" style={{ aspectRatio: "3 / 2" }}>
-  <img
-    src={t.photo || FALLBACK_AVATAR}
-    alt={`Foto de ${t.name}`}
-    loading="lazy"
-    className="w-full h-full object-cover object-top"
-    onError={(e) => {
-      (e.currentTarget as HTMLImageElement).src = FALLBACK_AVATAR;
-    }}
-  />
-</div>
+        <img
+          src={t.photo || FALLBACK_AVATAR}
+          alt={`Foto de ${t.name}`}
+          loading="lazy"
+          className="w-full h-full object-cover object-top"
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).src = FALLBACK_AVATAR;
+          }}
+        />
+      </div>
 
-      {/* Conteúdo */}
       <div className="flex flex-col flex-1 p-6 sm:p-7">
         <div className="mb-2">
           <h3 className="text-lg font-semibold leading-tight">{t.name}</h3>
@@ -80,18 +67,20 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   );
 }
 
-
-
-/* =========================
- * Section
- * =======================*/
 function TestimonialsSection() {
   const items = getTestimonials();
 
   return (
-    <section className="relative py-16 md:py-24">
+    // ✅ Apliquei o mesmo padrão do Location: `section-green` para o fundo verde clarinho
+    <section className="relative py-16 md:py-24 section-green">
+      {/* Linha no topo - verde clarinho */}
+      <div
+      //O que gera a linha é justamente a própria div com configuração bottom-0 left-0 , dá altura de 1 pixel e cria essa linha. Além disso, depende completamente da div pai ( section ) ser relative !
+        className="absolute top-0 left-0 w-full h-px"
+        style={{ backgroundColor: "#D2EAD2" }}
+      />
+
       <div className="container mx-auto px-4 max-w-7xl">
-        {/* Cabeçalho centralizado */}
         <header className="mx-auto mb-10 max-w-2xl text-center">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
             O que líderes empresariais dizem
@@ -101,13 +90,18 @@ function TestimonialsSection() {
           </p>
         </header>
 
-        {/* Grid centralizada, cards com alturas iguais */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 place-items-stretch">
           {items.map((t) => (
             <TestimonialCard key={t.name} t={t} />
           ))}
         </div>
       </div>
+
+      {/* Linha na base - verde clarinho */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-px"
+        style={{ backgroundColor: "#D2EAD2" }}
+      />
     </section>
   );
 }

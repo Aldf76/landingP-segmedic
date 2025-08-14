@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Accordion,
   AccordionContent,
@@ -31,27 +29,14 @@ const faqs = [
   },
 ];
 
-
-export default function FAQHybrid() {
+export default function FAQ() {
   return (
-    <section
-      className="
-        relative py-16 md:py-24
-        bg-[--seg-secondary]/10  // TODO: mapeie para sua cor secundária
-        "
-    >
-      {/* Curvinha top (opcional) */}
-      <div
-        className="absolute inset-x-0 -top-6 h-6 rounded-b-[2rem]
-        bg-[--seg-secondary]/10 pointer-events-none"
-        aria-hidden
-      />
-      <div className="container mx-auto px-4">
+    <section className="relative py-16 md:py-24 bg-[#F4FAF4]">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="mx-auto max-w-6xl">
-          <header className="mb-8 md:mb-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight
-              text-[--seg-primary]  // TODO: cor primária
-            ">
+          {/* Header */}
+          <header className="mb-5 text-center ">
+            <h2 className="text-3xl md:text-4xl font-semibold text-[#1E2547]">
               Dúvidas frequentes
             </h2>
             <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
@@ -59,118 +44,73 @@ export default function FAQHybrid() {
             </p>
           </header>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Coluna lateral (atalhos) */}
+          {/* Grid layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            {/* Lateral esquerda */}
             <aside className="lg:col-span-4 space-y-4">
-              <a
-                href="/ajuda"
-                className="block rounded-2xl border bg-background p-5 shadow-sm hover:shadow-md transition
-                  border-[--seg-primary]/20
-                "
-              >
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl p-2 bg-[--seg-primary]/10">
-                    <MessageSquareText className="size-5 text-[--seg-primary]" />
+              {[
+                {
+                  icon: MessageSquareText,
+                  title: "Dúvidas?",
+                  desc: "Acesse nossa Central de Ajuda",
+                  href: "/ajuda",
+                },
+                {
+                  icon: Phone,
+                  title: "Fale com um consultor",
+                  desc: "Cadastre-se e aproveite os descontos",
+                  href: "#contato",
+                },
+                {
+                  icon: MessageCircle,
+                  title: "Chama no WhatsApp",
+                  desc: "Atendimento rápido",
+                  href: "https://wa.me/55XXXXXXXXXXX",
+                  external: true,
+                },
+              ].map((item, i) => (
+                <a
+                  key={i}
+                  href={item.href}
+                  target={item.external ? "_blank" : "_self"}
+                  rel={item.external ? "noreferrer" : undefined}
+                  className="block rounded-2xl border border-[#1E2547]/10 bg-white p-5 shadow-sm hover:shadow-md transition"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-xl p-2 bg-[#1E2547]/10">
+                      <item.icon className="size-5 text-[#1E2547]" />
+                    </div>
+                    <div>
+                      <p className="font-medium">{item.title}</p>
+                      <p className="text-sm text-muted-foreground">{item.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium">Dúvidas?</p>
-                    <p className="text-sm text-muted-foreground">
-                      Acesse nossa Central de Ajuda
-                    </p>
-                  </div>
-                </div>
-              </a>
-
-              <a
-                href="#contato"
-                className="block rounded-2xl border bg-background p-5 shadow-sm hover:shadow-md transition
-                  border-[--seg-primary]/20
-                "
-              >
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl p-2 bg-[--seg-primary]/10">
-                    <Phone className="size-5 text-[--seg-primary]" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Fale com um consultor</p>
-                    <p className="text-sm text-muted-foreground">
-                      Cadastre-se e aproveite os descontos
-                    </p>
-                  </div>
-                </div>
-              </a>
-
-              <a
-                href="https://wa.me/55XXXXXXXXXXX"
-                target="_blank"
-                rel="noreferrer"
-                className="block rounded-2xl border bg-background p-5 shadow-sm hover:shadow-md transition
-                  border-[--seg-primary]/20
-                "
-              >
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl p-2 bg-[--seg-primary]/10">
-                    <MessageCircle className="size-5 text-[--seg-primary]" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Chama no WhatsApp</p>
-                    <p className="text-sm text-muted-foreground">
-                      Atendimento rápido
-                    </p>
-                  </div>
-                </div>
-              </a>
+                </a>
+              ))}
             </aside>
 
-            {/* Lista de FAQs (estilo “cards” arredondados, 1 aberta por vez) */}
+            {/* Acordeão de perguntas */}
             <div className="lg:col-span-8">
-              <div
-                className="
-                  rounded-3xl p-1
-                  bg-[--seg-primary]  // TODO: faixa/halo primário
-                  "
-              >
-                <div className="
-                  rounded-3xl p-4 md:p-6
-                  bg-background
-                ">
-                  <Accordion
-                    type="single"
-                    collapsible
-                    className="w-full"
-                  >
+              <div className="rounded-3xl p-1 bg-[#1E2547]/10">
+                <div className="rounded-3xl p-4 md:p-6 bg-white">
+                  <Accordion type="single" collapsible className="w-full">
                     {faqs.map((f, i) => (
                       <AccordionItem
                         key={i}
                         value={`faq-${i}`}
-                        className="
-                          group border-b last:border-b-0
-                          border-border/60
-                        "
+                        className="border-b last:border-b-0 border-slate-200"
                       >
                         <AccordionTrigger
-                          className="
-                            text-left py-5 md:py-6
-                            [&>svg]:shrink-0
-                            rounded-2xl
-                            hover:no-underline
-                            data-[state=open]:bg-[--seg-secondary]/10
-                            data-[state=open]:rounded-2xl
-                            px-4
-                            font-medium
-                          "
+                          className="text-left py-5 md:py-6 px-4 font-medium hover:no-underline data-[state=open]:bg-slate-50 rounded-2xl"
                         >
                           <span className="flex items-start gap-3">
-                            <span className="mt-0.5 inline-flex size-6 items-center justify-center rounded-full
-                              bg-[--seg-primary]/10 text-[--seg-primary] text-sm font-semibold
-                            ">
+                            <span className="mt-0.5 inline-flex size-6 items-center justify-center rounded-full bg-[#1E2547]/10 text-[#1E2547] text-sm font-semibold">
                               {(i + 1).toString().padStart(2, "0")}
                             </span>
                             {f.q}
                           </span>
                         </AccordionTrigger>
-
-                        <AccordionContent className="px-4 pb-6 pt-1 text-muted-foreground">
+                        <AccordionContent className="px-4 pb-6 pt-1 text-slate-600 text-sm">
                           {f.a}
                         </AccordionContent>
                       </AccordionItem>
@@ -182,13 +122,6 @@ export default function FAQHybrid() {
           </div>
         </div>
       </div>
-
-      {/* Curvinha bottom (opcional) */}
-      <div
-        className="absolute inset-x-0 -bottom-6 h-6 rounded-t-[2rem]
-        bg-[--seg-secondary]/10 pointer-events-none"
-        aria-hidden
-      />
     </section>
   );
 }

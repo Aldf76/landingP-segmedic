@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =========================================================
+ * BASE TOKENS (claro) — mantém seus tokens + adiciona sections
+ * =======================================================*/
 @layer base {
   :root {
+    /* --- Seus tokens existentes --- */
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
 
@@ -41,7 +45,23 @@
     --chart-5: 27 87% 67%;
 
     --radius: 0.5rem;
+
+    /* --- ADIÇÕES para superfícies de section (valores HSL) --- */
+    /* azul clarinho (base global) ≈ tailwind sky-50 (#F0F9FF) */
+    --section-blue: 204 100% 97%;
+    /* verde clarinho ≈ tailwind emerald-50 (#ECFDF5) */
+    --section-green: 152 81% 95%;
+    /* neutro claro ≈ tailwind slate-50 (#F8FAFC) */
+    --section-neutral: 210 20% 98%;
+
+    /* Define o background do tema claro como azul clarinho por padrão */
+    --background: var(--section-blue);
   }
+
+  /* =========================================================
+   * BASE TOKENS (dark) — mantém seus tokens.
+   * No dark, removemos o gradiente para não “sujar” o fundo.
+   * =======================================================*/
   .dark {
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
@@ -66,15 +86,83 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
   }
 }
 
+/* =========================================================
+ * RESET base + aplicação de cores temáticas
+ * =======================================================*/
 @layer base {
   * {
     @apply border-border;
   }
+  html, body, #root, #__next {
+    height: 100%;
+  }
   body {
+    /* usa o token do tema */
     @apply bg-background text-foreground;
+
+    /* Gradiente sutil por cima do azul clarinho para não ficar “chapado” */
+    background-image:
+      linear-gradient(
+        180deg,
+        hsla(201, 95%, 75%, 0.06) 0%,
+        hsla(201, 95%, 75%, 0.03) 60%,
+        hsla(201, 95%, 75%, 0.00) 100%
+      );
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+  }
+  /* No dark, mantemos o fundo sólido para não “sujar” */
+  .dark body {
+    background-image: none;
+  }
+}
+
+/* =========================================================
+ * COMPONENTS LAYER — utilitários semântico‑visuais para sections
+ * =======================================================*/
+@layer components {
+  /* Marca uma section com verde clarinho (use em seções que quer destacar) */
+  .section-green {
+    background-color: hsl(var(--section-green));
+  }
+
+  /* Alternativa neutra clara */
+  .section-neutral {
+    background-color: hsl(var(--section-neutral));
+  }
+
+  /* Conteiner padrão de section */
+  .section-container {
+    @apply container mx-auto px-4;
+  }
+
+  /* Título de section centralizado e consistente */
+  .section-title {
+    @apply text-center text-3xl md:text-4xl font-semibold tracking-tight;
+  }
+
+  /* Subtítulo de section */
+  .section-subtitle {
+    @apply mt-3 text-slate-600 max-w-2xl mx-auto text-center;
+  }
+
+  /* Espaçamento vertical padrão de section */
+  .section-y {
+    @apply py-16 md:py-24;
+  }
+
+  /* Divisor sutil entre sections (aplique na section de baixo) */
+  .section-divider {
+    border-top: 1px solid hsl(var(--border));
+  }
+
+  /* Cartões internos com elevação suave — evita sensação de “chapado” */
+  .section-card {
+    @apply bg-white rounded-2xl shadow-sm;
   }
 }
